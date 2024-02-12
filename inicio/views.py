@@ -27,7 +27,7 @@ def signup(request):
                 username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('inventario')
+                return redirect('indexsoftware')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
