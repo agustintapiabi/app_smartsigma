@@ -52,7 +52,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('inventario')
+            return redirect('indexsoftware')
 
 @login_required
 def signout(request):
