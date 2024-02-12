@@ -1,0 +1,18 @@
+{% extends 'layouts/base_procesos.html' %}
+
+
+{% block content %}
+
+<h1>Gestion de los Procesos</h1>
+
+{% for Proceso in Procesos %}
+
+<div>
+    <h3>{{Proceso.Name}}</h3>
+    <p>{{Proceso.Description}}</p>
+    <p>Area: {{Proceso.Area.Name}}</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

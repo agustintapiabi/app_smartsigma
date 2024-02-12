@@ -1,0 +1,44 @@
+{% extends 'layouts/index_master.html' %}
+
+{% block content %}
+    <!-- page content -->
+        <div class="right_col" role="main">
+          <h1>Seguimiento Total</h1>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Lorem</th>
+                <th scope="col">Ipsum</th>
+                <th scope="col">Dolor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Sit</td>
+                <td>Amet</td>
+                <td>Consectetur</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Adipisicing</td>
+                <td>Elit</td>
+                <td>Sint</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Hic</td>
+                <td>Fugiat</td>
+                <td>Temporibus</td>
+              </tr>
+            </tbody>
+            <caption v-if="captions">
+              Captions of the table
+            </caption>
+          </table>
+          
+        </div>
+        <!-- /page content -->
+{% endblock %}

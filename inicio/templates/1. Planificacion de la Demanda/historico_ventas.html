@@ -1,0 +1,63 @@
+{% extends 'layouts/index_sidebar.html' %}
+
+{% block content %}
+    <!-- page content -->
+        <div class="right_col" role="main" style="margin-left: 350px;">
+        <h1 style="padding: 20px 0px;">Historico de Ventas</h1>
+        <div class="table-container" style="margin-right: 70px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); padding: 10px 0px;">
+        <div class="table-responsive">
+          <table class="table" style="border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th scope="col" style="display: none;">#</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for ventas in page_obj %}
+              <tr>
+                <td style="display: none;">{{ ventas.id }}</td>
+                <td>{{ ventas.SKU }}</td>
+                <td>{{ ventas.Cantidad }}</td>
+                <td>{{ ventas.Precio }}</td>
+                <td>{{ ventas.Fecha }}</td>
+                <td>
+                  <a href="{% url 'modificardatos' ventas.id %}" class="btn btn-primary" style="background-color: black; color: white; border-color: black; font-size: 12px; padding: 5px 10px;">Modificar</a> 
+              </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <caption v-if="captions">
+              Captions of the table
+          </caption>
+          </table>
+        </div>
+      </div>
+
+          {% if page_obj.paginator.num_pages > 1 %}
+          <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="color: black;">Anterior</a>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                <li class="page-item {% if num == page_obj.number %}active{% endif %}" style="margin-bottom: 30px;">
+                  <a class="page-link" href="?page={{ num }}" style="color: black; {% if num == page_obj.number %}background-color: #7a7a7a; border-color: #7a7a7a;{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" style="color: black;">Siguiente</a>
+                    </li>
+                {% endif %}
+          </ul>
+          {% endif %}
+    </div>
+    <!-- /page content -->
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layouts/index_master.html' %}
+
+
+{% block content %}
+<div class="right_col" role="main">
+<h1>Gestion de Inventario</h1>
+<ul>
+    {% for Inventario in Inventarios %}
+    <li>
+        <a href="{% url 'detalle_sku' Inventario.id %}">
+           <p>{{Inventario.SKU}}</p>
+           <p>{{Inventario.Description}}</p>
+           <p>Area:{{Inventario.Area.Name}}</p>
+        </a> 
+    </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

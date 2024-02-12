@@ -1,0 +1,61 @@
+{% extends 'layouts/index_sidebar.html' %}
+
+{% block content %}
+    <!-- page content -->
+        <div class="right_col" role="main" style="margin-left: 350px;">
+        <div class="form-container" style="margin-right: 70px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); padding: 10px 0px;">
+
+          <form action="ingresardatos" method="POST" style="padding: 40px 0px;">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="sku">SKU</label> 
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-500px"></i>
+                  </div>
+                </div> 
+                <input id="sku" name="sku" type="text" required="required" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cantidad">Cantidad</label> 
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calculator"></i>
+                  </div>
+                </div> 
+                <input id="cantidad" name="cantidad" type="number" required="required" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="precio">Precio</label> 
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-dollar"></i>
+                  </div>
+                </div> 
+                <input id="precio" name="precio" type="number" required="required" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fecha">Fecha</label> 
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar-o"></i>
+                  </div>
+                </div> 
+                <input id="fecha" name="fecha" type="date" required="required" class="form-control">
+              </div>
+            </div> 
+            <div class="form-group">
+              <button name="submit" type="submit" class="btn btn-primary">Registrar Venta</button>
+            </div>
+          </form>   
+        </div>       
+        </div>
+        <!-- /page content -->
+{% endblock %}
