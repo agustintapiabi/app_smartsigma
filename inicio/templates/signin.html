@@ -1,29 +1,59 @@
-{% extends 'layouts/base.html' %}
+{% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style_signin.css' %}">
+</head>
+<body> 
+    <div class="form_container">
+        <div class="left">
+            <div class="login_container">
+                <h1>Bienvenido</h1>
+                <span class="subtitle">Por favor ingrese sus datos</span>
+                
+                <button class="google_btn"><img src="/static/images/google.png" alt="">Ingrese con Google</button>
 
-<main class="container">
-    <div class="row">
-        <section class="col-md-4 offset-md-4 mt-5">
-              <form action="/SignIn/" method="POST" class="card card-body">
+                <div class="line">
+                    <span></span>
+                    <small>or</small>
+                    <span></span>
+                </div>
 
-                <h1 class="text-center">Iniciar Sesion</h1>
-                    {{error}}
-                    {% csrf_token %}
-                            
-                <div class="mb-3">
-                    <label for="username">Usuario:</label>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Ingrese su nombre de Usuario">
-                <div class="mb-3">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Ingrese su Contraseña">
+                <form action="/SignIn/" method="POST">
+                {{error}}
+                {% csrf_token %}
+                    <input type="text" name="username" id="username" placeholder="Usuario">
+                    <input type="password" name="password" id="password"  placeholder="Contraseña">
 
-                <button class="btn btn-primary">
-                    Iniciar Sesion
-                </button>
-              </form>
-        </section>
+                    <div class="actions">
+                        <div class="wrapper">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Recordar</label>
+                        </div>
+                        <a href="#">Olvidé mi contraseña</a>
+                    </div>
+
+                    <button type="submit" class="login_btn">Ingresar</button>
+                </form>
+
+                <p class="signup_info">
+                    ¿No tienes acceso? <a href="#">Contáctenos</a>
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="info">
+                <p>Para lograr la excelencia debe ser fácil</p>
+                <h2>SmartSigma</h2>
+                <div class="arrows">
+            </div>
+        </div>
     </div>
-</main>
-
-{% endblock %}
+</body>
+</html>
