@@ -1,0 +1,52 @@
+{% extends 'layouts/index_sidebar.html' %}
+
+{% block content %}
+    <div class="right_col" role="main" style="margin-left: 350px;">
+        <h1 style="padding: 30px 0px;">Ventas por Mes</h1>
+
+        <form method="GET" action="{% url 'ventas_por_mes' %}">
+            <label for="year">Seleccione el año:</label>
+            <select name="year" id="year">
+                {% for year in available_years %}
+                    <option value="{{ year }}" {% if selected_year == year %} selected {% endif %}>{{ year }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Mostrar</button>
+        </form>
+        
+
+        <div class="table-container" style="margin-right: 70px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); padding: 10px 0px; margin-bottom: 100px;">
+            <div class="table-responsive">
+                <table class="table" style="border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Año</th>
+                            <th scope="col">Enero</th>
+                            <th scope="col">Febrero</th>
+                            <th scope="col">Marzo</th>
+                            <th scope="col">Abril</th>
+                            <th scope="col">Mayo</th>
+                            <th scope="col">Junio</th>
+                            <th scope="col">Julio</th>
+                            <th scope="col">Agosto</th>
+                            <th scope="col">Septiembre</th>
+                            <th scope="col">Octubre</th>
+                            <th scope="col">Noviembre</th>
+                            <th scope="col">Diciembre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for año, cantidad_ventas_por_mes in datos_tabla %}
+                            <tr>
+                                <td>{{ año }}</td>
+                                {% for cantidad_ventas in cantidad_ventas_por_mes %}
+                                    <td>{{ cantidad_ventas }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

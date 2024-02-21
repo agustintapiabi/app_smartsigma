@@ -134,7 +134,7 @@ header {
 
 /* Servicios */
 .services .service{
-    padding: 100px 0 50px;
+    padding: 100px 0 30px;
     width: 100%;
     display: flex;
 }
@@ -193,8 +193,12 @@ header {
     padding-bottom: 150px;
 }
 
+.testimonials h2 {
+    margin-top: -10px;
+}
+
 .testimonials .grid_container {
-    margin-top: 50px;
+    margin-top: 60px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;

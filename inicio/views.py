@@ -5,7 +5,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.core.paginator import Paginator
-from .models import Proceso, Inventario, HistoricoVenta
+from collections import defaultdict
+from django.db.models.functions import ExtractYear
+from datetime import datetime
+from .models import Proceso, Inventario, HistoricoVenta, VentasPorMes
 from .forms import AñadirProceso, AñadirSKU, IngresarVenta
 from django.http.response import JsonResponse
 
@@ -204,4 +207,34 @@ def HistoricoVentas(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, '1. Planificacion de la Demanda/historico_ventas.html', {'page_obj': page_obj})
- 
+
+def VentasPorMesView(request):
+    historicoventas = HistoricoVenta.objects.order_by('-Fecha')
+    ventas_por_mes = calcular_ventas_por_mes(historicoventas)
+    numeros_meses = range(1, 13)
+    # Obtener años únicos disponibles en la base de datos
+    available_years = HistoricoVenta.objects.annotate(year=ExtractYear('Fecha')).values_list('year', flat=True).distinct()
+    selected_year = request.GET.get('year')
+    # Si no se selecciona un año, mostrar el último año por defecto
+    if not selected_year:
+        selected_year = available_years[0] if available_years else None
+    # Filtrar ventas por el año seleccionado
+    if selected_year:
+        historicoventas = historicoventas.filter(Fecha__year=selected_year)
+        ventas_por_mes = calcular_ventas_por_mes(historicoventas)
+    # Crear una lista de tuplas de la forma (año, [cantidad_ventas_mes1, cantidad_ventas_mes2, ...])
+    datos_tabla = []
+    for año, meses in ventas_por_mes.items():
+        cantidad_ventas_por_mes = [meses.get(num_mes, 0) for num_mes in numeros_meses]
+        datos_tabla.append((año, cantidad_ventas_por_mes))
+    return render(request, '1. Planificacion de la Demanda/ventas_por_mes.html', {'datos_tabla': datos_tabla, 'numeros_meses': numeros_meses, 'available_years': available_years, 'selected_year': selected_year})
+
+def calcular_ventas_por_mes(historicoventas):
+    ventas_por_mes = defaultdict(dict)
+    for venta in historicoventas:
+        mes = venta.Fecha.month
+        año = venta.Fecha.year
+        if año not in ventas_por_mes:
+            ventas_por_mes[año] = {}
+        ventas_por_mes[año][mes] = ventas_por_mes[año].get(mes, 0) + 1
+    return ventas_por_mes

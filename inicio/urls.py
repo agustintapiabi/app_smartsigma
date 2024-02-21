@@ -15,6 +15,7 @@ urlpatterns = [
     path('Inicio/modificardatos/<int:id>', views.modificardatos, name="modificardatos"),
     path('Inicio/ingresardatos/<int:id>/delete', views.eliminardatos, name="eliminardatos"),
     path('Inicio/historicoventas', views.HistoricoVentas, name="historicoventas"),
+    path('ventas-por-mes/', views.VentasPorMesView, name='ventas_por_mes'),
     path('Procesos/', views.Procesos, name="procesos"),
     path('añadir_proceso/', views.AñadirProcesos, name="añadir_proceso"),
     path('Inicio/inventario', views.Inventarios, name="inventario"),

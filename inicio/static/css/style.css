@@ -1,44 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100&family=Roboto:wght@100;300;400&display=swap');
 :root{
-    --color-barra-lateral:rgb(255,255,255);
+    --color-barra-lateral:rgb(248, 249, 255);
 
     --color-texto:rgb(0,0,0);
     --color-texto-menu:rgb(0, 0, 0);
 
-    --color-menu-hover:rgb(238,238,238);
+    --color-menu-hover:rgb(233, 233, 233);
     --color-menu-hover-texto:rgb(0,0,0);
 
     --color-boton:rgb(0,0,0);
     --color-boton-texto:rgb(255,255,255);
 
-    --color-linea:rgb(180,180,180);
-
     --color-switch-base :rgb(201,202,206);
     --color-switch-circulo:rgb(241,241,241);
 
-    --color-scroll:rgb(192,192,192);
-    --color-scroll-hover:rgb(134,134,134);
-}
-
-.dark-mode{
-    --color-barra-lateral:rgb(44,45,49);
-
-    --color-texto:rgb(255,255,255);
-    --color-texto-menu:rgb(110,110,117);
-
-    --color-menu-hover:rgb(0,0,0);
-    --color-menu-hover-texto:rgb(238,238,238);
-
-    --color-boton:rgb(255,255,255);
-    --color-boton-texto:rgb(0,0,0);
-
-    --color-linea:rgb(90,90,90);
-
-    --color-switch-base :rgb(39,205,64);
-    --color-switch-circulo:rgb(255,255,255);
-
-    --color-scroll:rgb(68,69,74);
-    --color-scroll-hover:rgb(85,85,85);
+    --color-scroll:rgb(135, 141, 255);
+    --color-scroll-hover:rgb(141, 152, 255);
 }
 
 
@@ -49,39 +26,98 @@
     font-family: 'Outfit', sans-serif;
     font-family: 'Roboto', sans-serif;
 }
+
 body{
     height: 100vh;
     width: 100%;
     background-color: rgb(255, 255, 255);
 }
 
-/*-----------------Menu*/
-.menu{
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    display: none;
-    justify-content: center;
+
+/* MENU */
+.menu_container {
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 62px;
+    background-color: var(--color-barra-lateral);
+    display: flex;
     align-items: center;
-    border-radius: 50%;
+    justify-content: center;
+    padding: 0 20px;
+    z-index: 1000; 
+}
+
+.search-bar {
+    width: 65%;
+    max-width: 700px;
+    background: rgba(235, 238, 255, 0.953);
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    margin-right: 255px;
+    padding: 10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-bar button {
+    border: none;
+    background: transparent;
     cursor: pointer;
-    background-color: var(--color-boton);
-    color: var(--color-boton-texto);
-    right: 15px;
-    top: 15px;
-    z-index: 100;
+    padding: 0 20px 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar ion-icon {
+    width: 20px;
+    height: 20px;
+    color: #333;
+}
+
+.btn-config,
+.btn-profile {
+    margin-right: 10px;
+    padding: 5px 5px; 
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-barra-lateral);
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.navbar-right {
+    position: absolute; 
+    top: 34px;
+    right: 30px; 
+    transform: translateY(-50%);
+}
+
+.btn-profile {
+    margin-right: 0;
 }
 
 
-/*----------------Barra Lateral*/
+/* BARRA LATERAL */
 .barra-lateral{
     position: fixed;
+    top: 0; 
+    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
-    height: 100%;
+    width: 280px;
+    height: 150%;
+    height: calc(150% - 60px);
     overflow: hidden;
     padding: 20px 15px;
     background-color: var(--color-barra-lateral);
@@ -92,6 +128,7 @@ body{
 .mini-barra-lateral{
     width: 80px;
 }
+
 .barra-lateral span{
     width: 100px;
     white-space: nowrap;
@@ -100,56 +137,52 @@ body{
     opacity: 1;
     transition: opacity 0.5s ease,width 0.5s ease;
 }
-.barra-lateral span.oculto{
-    opacity: 0;
-    width: 0;
-}
 
-/*------------> Nombre de la página */
+/* Nombre de Página */
 .barra-lateral .nombre-pagina{
     width: 100%;
     height: 45px;
     color: var(--color-texto);
+    margin-top: -11px;
     margin-bottom: 40px;
     display: flex;
     align-items: center;
 }
 .barra-lateral .nombre-pagina ion-icon{
-    margin-left: 20px;
+    margin-left: 10px;
     min-width: 50px;
-    font-size: 40px;
+    font-size: 32px;
     cursor: pointer;
 }
 .barra-lateral .nombre-pagina span{
-    margin-left: 7px;
-    font-size: 25px;
+    margin-left: 2px;
+    font-size: 22px;
 }
 
-
-/*------------> Botón*/
+/* Botón */
 .barra-lateral .boton{
-    width: 85%;
-    height: 50px;
-    margin-bottom: 20px;
-    margin-left: 10px;
+    width: 80%;
+    height: 42px;
+    margin-bottom: 25px;
+    margin-left: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: var(--color-boton);
     color: var(--color-boton-texto);
 }
 .barra-lateral .boton span {
-    margin-right: 33px; /* Ajuste para mover el texto hacia la izquierda */
+    margin-right: 10px; 
+    font-size: 15px;
 }
 .barra-lateral .boton ion-icon{
-    min-width: 50px;
-    font-size: 25px;
+    min-width: 33px;
+    font-size: 24px;
 }
 
-
-/*--------------> Menu Navegación*/
+/* Menu Navegación */
 .barra-lateral .navegacion{
     height: 100%;
     overflow-y: auto;
@@ -157,164 +190,53 @@ body{
     display: flex;
     justify-content: flex-start;
 }
-.barra-lateral .navegacion::-webkit-scrollbar{
-    width: 5px;
-}
-.barra-lateral .navegacion::-webkit-scrollbar-thumb{
-    background-color: var(--color-scroll);
-    border-radius: 5px;
-}
-.barra-lateral .navegacion::-webkit-scrollbar-thumb:hover{
-    background-color: var(--color-scroll-hover);
-}
+
 .barra-lateral .navegacion li{  
     margin-left: -15px;
     list-style: none;
     display: flex;
     margin-bottom: 5px;
 }
-.barra-lateral .navegacion a{
-    width: 100%;
-    height: 45px;
+
+.barra-lateral .navegacion a {
+    width: 236px;
+    height: 38px;
+    margin-left: -10px;
     display: flex;
     align-items: center;
     text-decoration: none;
     border-radius: 10px;
     color: var(--color-texto-menu);
 }
-.barra-lateral .navegacion a:hover{
+
+.barra-lateral .navegacion a:hover {
+    width: 236px;
+    border-radius: 20px;
     background-color: var(--color-menu-hover);
     color: var(--color-menu-hover-texto);
-}
-.barra-lateral .navegacion ion-icon{
-    min-width: 50px;
-    font-size: 20px;
+    max-height: 100px;
 }
 
-/*-----------------> Linea*/
-.barra-lateral .linea{
-    width: 100%;
-    height: 1px;
-    margin-top: 20px;
-    background-color: var(--color-linea);
-}
-
-/*----------------> Modo Oscuro*/
-.barra-lateral .modo-oscuro{
-    width: 100%;
-    margin-bottom: 80px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.barra-lateral .modo-oscuro .info{
-    width: 150px;
-    height: 45px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    color: var(--color-texto-menu);
-}
-.barra-lateral .modo-oscuro ion-icon{
-
-    width: 50px;
-    font-size: 20px;
-}
-
-/*--->switch*/
-.barra-lateral .modo-oscuro .switch{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    height: 45px;
-    cursor: pointer;
-}
-.barra-lateral .modo-oscuro .base{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 35px;
-    height: 20px;
-    background-color: var(--color-switch-base);
-    border-radius: 50px;
-}
-.barra-lateral .modo-oscuro .circulo{
-    position: absolute;
-    width: 18px;
-    height: 90%;
-    background-color: var(--color-switch-circulo);
-    border-radius: 50%;
-    left: 2px;
-    transition: left 0.5s ease;
-}
-.barra-lateral .modo-oscuro .circulo.prendido{
-    left: 15px;
-}
-
-/*---------------> Usuario*/
-.barra-lateral .usuario{
-    width: 100%;
-    display: flex;
-}
-.barra-lateral .usuario img{
-    width: 50px;
-    min-width: 50px;
-    border-radius: 10px;
-}
-.barra-lateral .usuario .info-usuario{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--color-texto);
-    overflow: hidden;
-}
-.barra-lateral .usuario .nombre-email{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
-}
-.barra-lateral .usuario .nombre{
+.barra-lateral .navegacion a span {
+    margin-left: 8px;
     font-size: 15px;
-    font-weight: 600;
-}
-.barra-lateral .usuario .email{
-    font-size: 13px;
-}
-.barra-lateral .usuario ion-icon{
-    font-size: 20px;
 }
 
-
-/*-------------main*/
-
-#inbox{
-    background-color: var(--color-menu-hover);
-    color: var(--color-menu-hover-texto);
-}
-
-main{
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.5s ease;
-}
-main.min-main{
-    margin-left: 80px;
+.barra-lateral .navegacion ion-icon {
+    margin-left: 7px;
+    min-width: 35px;
+    font-size: 18px;
 }
 
 
-
-/*------------------> Responsive*/
+/* DESIGN RESPONSIVE */
 @media (max-height: 660px){
     .barra-lateral .nombre-pagina{
         margin-bottom: 5px;
     }
-    .barra-lateral .modo-oscuro{
-        margin-bottom: 3px;
-    }
+
 }
+
 @media (max-width: 600px){
     .barra-lateral{
         position: fixed;

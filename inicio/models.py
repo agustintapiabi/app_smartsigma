@@ -29,6 +29,14 @@ class HistoricoVenta(models.Model):
     
     class Meta:
         db_table = 'ventas'
+        
+class VentasPorMes(models.Model):
+    año = models.IntegerField()
+    mes = models.IntegerField()
+    cantidad_ventas = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ['año', 'mes']  # Para asegurarse de que haya una única entrada por mes y año
     
 class InventarioABC(models.Model):
     SKU = models.CharField(max_length=200)
